@@ -1,0 +1,14 @@
+# Create main directories
+mkdir backend frontend database scripts docs
+
+# Create backend structure
+mkdir backend/api backend/config backend/public
+
+# Create frontend structure
+mkdir frontend/public frontend/src frontend/src/types frontend/src/services frontend/src/hooks frontend/src/components frontend/src/utils
+
+# Create database folder
+mkdir database/migrations database/seeds
+
+# Create scripts folder
+mkdir scripts/setup scripts/deploy

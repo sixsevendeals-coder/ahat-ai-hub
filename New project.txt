@@ -1,0 +1,12 @@
+Desktop/
+├── APP-deepseek/          ← Your existing project (LEAVE THIS ALONE)
+│   ├── app.js
+│   ├── index.html
+│   ├── styles.css
+│   └── ... (all your existing files)
+│
+└── Ahat-AI-Hub/           ← NEW PROJECT we're creating
+    ├── frontend/
+    ├── backend/
+    ├── database/
+    └── scripts/

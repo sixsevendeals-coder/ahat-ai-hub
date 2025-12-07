@@ -1,0 +1,5 @@
+OneDrive\Desktop\Ahat-AI-Hub\docs\
+├── API_VERIFICATION.md     (Your test results)
+├── REACT_SETUP.md          (The message)
+├── API_ENDPOINTS.md        (Endpoint details)
+└── PRODUCT_DATA.md         (Product specifications)

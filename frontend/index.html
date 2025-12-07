@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AHAT Affiliate Hub | SixSevenDeals Products</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --gray: #9ca3af;
+            --gray-light: #e5e7eb;
+            --border-radius: 8px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            font-size: 1.75rem;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .tagline {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 0.25rem;
+        }
+
+        .stats {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 2rem 0;
+        }
+
+        /* Controls Section */
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            border: 1px solid var(--gray-light);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+
+        .filters {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            background: white;
+            border: 1px solid var(--gray-light);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .filter-btn.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .sort-select {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--gray-light);
+            border-radius: var(--border-radius);
+            background: white;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .product-content {
+            padding: 1.25rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-category {
+            display: inline-block;
+            background-color: #e0f2fe;
+            color: #0369a1;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--dark);
+            line-height: 1.3;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .stars {
+            color: var(--warning);
+            margin-right: 0.5rem;
+        }
+
+        .rating-value {
+            font-weight: 600;
+            margin-right: 0.25rem;
+        }
+
+        .review-count {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .pricing {
+            margin-bottom: 1.25rem;
+        }
+
+        .current-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: var(--gray);
+            font-size: 1rem;
+            margin-left: 0.5rem;
+        }
+
+        .discount-badge {
+            background-color: var(--danger);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+            display: inline-block;
+        }
+
+        .trending-badge {
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+            display: inline-block;
+        }
+
+        .product-features {
+            margin-bottom: 1.25rem;
+            flex-grow: 1;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            padding: 0.25rem 0;
+            font-size: 0.9rem;
+            color: #4b5563;
+            position: relative;
+            padding-left: 1.25rem;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .affiliate-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.25rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .affiliate-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .ai-score {
+            font-size: 0.9rem;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        /* Loading and Error States */
+        .loading-container, .error-container {
+            text-align: center;
+            padding: 3rem;
+            grid-column: 1 / -1;
+        }
+
+        .loading-spinner {
+            border: 4px solid var(--gray-light);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-icon {
+            font-size: 3rem;
+            color: var(--danger);
+            margin-bottom: 1rem;
+        }
+
+        /* Best Deal Banner */
+        .best-deal-banner {
+            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+            color: white;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.9; }
+            100% { opacity: 1; }
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .api-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+        }
+
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--secondary);
+            animation: statusPulse 2s infinite;
+        }
+
+        @keyframes statusPulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .stats {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-box {
+                min-width: 100%;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .best-deal-banner {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats {
+                gap: 1rem;
+            }
+            
+            .stat-item {
+                flex: 1;
+                min-width: 100px;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-footer {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-chart-line logo-icon"></i>
+                    <div>
+                        <div class="logo-text">AHAT Affiliate Hub</div>
+                        <div class="tagline">SixSevenDeals Products with Real-Time Analytics</div>
+                    </div>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-value" id="product-count">7</span>
+                        <span class="stat-label">Products</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="total-reviews">40,980</span>
+                        <span class="stat-label">Total Reviews</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="avg-rating">4.61</span>
+                        <span class="stat-label">Avg Rating</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="total-savings">$200.99</span>
+                        <span class="stat-label">Total Savings</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Best Deal Banner -->
+            <div class="best-deal-banner" id="best-deal-banner">
+                <div>
+                    <i class="fas fa-fire"></i>
+                    <strong>BEST DEAL:</strong> 
+                    <span id="best-deal-text">ZZU Earphones - 33% OFF</span>
+                </div>
+                <div>
+                    <i class="fas fa-crown"></i>
+                    <strong>TOP RATED:</strong> 
+                    <span id="top-rated-text">Samsung SSD - 4.8★</span>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="controls">
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="search-input" placeholder="Search products...">
+                </div>
+                <div class="filters">
+                    <button class="filter-btn active" data-category="all">All Products</button>
+                    <!-- Dynamic category buttons will be added here by JavaScript -->
+                </div>
+                <select class="sort-select" id="sort-select">
+                    <option value="featured">Featured</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="rating">Highest Rated</option>
+                    <option value="discount">Best Discount</option>
+                </select>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="products-grid" id="products-grid">
+                <!-- Loading State -->
+                <div class="loading-container" id="loading-container">
+                    <div class="loading-spinner"></div>
+                    <h3>Loading Products...</h3>
+                    <p>Fetching the best SixSevenDeals products for you</p>
+                </div>
+                
+                <!-- Products will be dynamically inserted here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="api-status">
+                    <div class="status-indicator"></div>
+                    <span>Backend API Connected: http://localhost:8000</span>
+                </div>
+                <p>AHAT Affiliate Marketing Platform | Phase 2.5: Dynamic Dashboard</p>
+                <p>© 2024 SixSevenDeals Analytics. All affiliate links support our platform.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ============================================
+        // AHAT AFFILIATE DASHBOARD - FIXED VERSION
+        // ============================================
+        
+        // API Configuration
+        const API_BASE_URL = 'http://localhost:8000';
+        const PRODUCTS_ENDPOINT = `${API_BASE_URL}/api/products`;
+        const STATS_ENDPOINT = `${API_BASE_URL}/api/products/stats`;
+        const CATEGORIES_ENDPOINT = `${API_BASE_URL}/api/products/categories`;
+
+        // State Management
+        let allProducts = [];
+        let filteredProducts = [];
+        let allCategories = [];
+        let currentCategory = 'all';
+        let currentSort = 'featured';
+        let searchTerm = '';
+
+        // DOM Elements
+        const productsGrid = document.getElementById('products-grid');
+        const loadingContainer = document.getElementById('loading-container');
+        const searchInput = document.getElementById('search-input');
+        const sortSelect = document.getElementById('sort-select');
+        let filterButtons = document.querySelectorAll('.filter-btn');
+        
+        // Stats Elements - ALL FIXED HERE
+        const productCountEl = document.getElementById('product-count');
+        const totalReviewsEl = document.getElementById('total-reviews');
+        const avgRatingEl = document.getElementById('avg-rating');
+        const totalSavingsEl = document.getElementById('total-savings');
+        const bestDealText = document.getElementById('best-deal-text');
+        const topRatedText = document.getElementById('top-rated-text');
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', async () => {
+            console.log('🚀 AHAT Dashboard Initializing...');
+            
+            // First check if backend is reachable
+            await checkBackendConnection();
+            
+            // Load stats FIRST to show accurate data in header
+            await loadStats();
+            
+            // Then load products and categories
+            await loadProducts();
+            await loadCategories();
+            
+            // Setup event listeners
+            setupEventListeners();
+            
+            console.log('✅ Dashboard initialized successfully');
+        });
+
+        // Check backend connection
+        async function checkBackendConnection() {
+            try {
+                const response = await fetch(API_BASE_URL);
+                if (response.ok) {
+                    console.log('✅ Backend API is reachable');
+                } else {
+                    console.warn('⚠️ Backend returned status:', response.status);
+                }
+            } catch (error) {
+                console.error('❌ Cannot connect to backend:', error.message);
+                showError(`Cannot connect to backend at ${API_BASE_URL}. Please make sure backend server is running.`);
+            }
+        }
+
+        // ============================================
+        // FIXED: loadStats() - Now fetches REAL data from API
+        // ============================================
+        async function loadStats() {
+            try {
+                console.log('📊 Fetching real statistics from:', STATS_ENDPOINT);
+                
+                const response = await fetch(STATS_ENDPOINT);
+                
+                if (!response.ok) {
+                    throw new Error(`API returned ${response.status}: ${response.statusText}`);
+                }
+                
+                const stats = await response.json();
+                console.log('✅ Real stats received:', stats);
+                
+                // ============================================
+                // CRITICAL FIX: Update header with REAL API data
+                // ============================================
+                
+                // Update Products count
+                productCountEl.textContent = stats.total_products || '7';
+                productCountEl.style.color = '#10b981'; // Green to indicate live data
+                
+                // Update Total Reviews (formatted with commas)
+                if (totalReviewsEl && stats.total_reviews) {
+                    totalReviewsEl.textContent = stats.total_reviews.toLocaleString();
+                    totalReviewsEl.style.color = '#10b981';
+                }
+                
+                // Update Average Rating
+                avgRatingEl.textContent = stats.average_rating ? stats.average_rating.toFixed(2) : '4.61';
+                avgRatingEl.style.color = '#f59e0b'; // Orange for rating
+                
+                // Update Total Savings
+                totalSavingsEl.textContent = stats.total_savings ? `$${stats.total_savings.toFixed(2)}` : '$200.99';
+                totalSavingsEl.style.color = '#ef4444'; // Red for savings (attention-grabbing)
+                
+                // Update Best Deal Banner
+                if (stats.best_discount) {
+                    bestDealText.textContent = `${stats.best_discount.product} - ${stats.best_discount.discount_percentage}% OFF (Save $${stats.best_discount.savings})`;
+                }
+                
+                // Update Top Rated Banner
+                if (stats.best_rating) {
+                    topRatedText.textContent = `${stats.best_rating.product} - ${stats.best_rating.rating}★ (${stats.best_rating.reviews.toLocaleString()} reviews)`;
+                }
+                
+                console.log('✅ Header stats updated with real data');
+                
+            } catch (error) {
+                console.error('❌ Error loading stats:', error);
+                
+                // Fallback to static data if API fails
+                productCountEl.textContent = '7';
+                totalReviewsEl.textContent = '40,980';
+                avgRatingEl.textContent = '4.61';
+                totalSavingsEl.textContent = '$200.99';
+                bestDealText.textContent = 'ZZU Earphones - 33% OFF';
+                topRatedText.textContent = 'Samsung SSD - 4.8★';
+                
+                console.log('⚠️ Using fallback stats due to API error');
+            }
+        }
+
+        // Fetch categories from API
+        async function loadCategories() {
+            try {
+                console.log('📂 Fetching categories from:', CATEGORIES_ENDPOINT);
+                const response = await fetch(CATEGORIES_ENDPOINT);
+                const categories = await response.json();
+                
+                console.log('✅ Categories received:', categories);
+                allCategories = categories;
+                updateCategoryFilters(categories);
+                
+            } catch (error) {
+                console.error('❌ Error loading categories:', error);
+                
+                // Fallback categories extracted from your API response
+                updateCategoryFilters([
+                    { name: 'Audio', count: 2 },
+                    { name: 'Home', count: 1 },
+                    { name: 'Health', count: 2 },
+                    { name: 'Electronics', count: 2 }
+                ]);
+            }
+        }
+
+        // Update category filter buttons dynamically
+        function updateCategoryFilters(categories) {
+            const filtersContainer = document.querySelector('.filters');
+            if (!filtersContainer) return;
+            
+            // Clear existing filter buttons (but keep the "All Products" button)
+            const allProductsBtn = filtersContainer.querySelector('[data-category="all"]');
+            filtersContainer.innerHTML = '';
+            
+            // Re-add the "All Products" button
+            if (allProductsBtn) {
+                filtersContainer.appendChild(allProductsBtn);
+            } else {
+                // Create "All Products" button if it doesn't exist
+                const allBtn = document.createElement('button');
+                allBtn.className = 'filter-btn active';
+                allBtn.dataset.category = 'all';
+                allBtn.textContent = 'All Products';
+                allBtn.addEventListener('click', handleCategoryFilter);
+                filtersContainer.appendChild(allBtn);
+            }
+            
+            // Add dynamic category buttons
+            categories.forEach(category => {
+                const button = document.createElement('button');
+                button.className = 'filter-btn';
+                button.dataset.category = category.name;
+                button.textContent = `${category.name} (${category.count})`;
+                button.addEventListener('click', handleCategoryFilter);
+                filtersContainer.appendChild(button);
+            });
+            
+            // Re-initialize the filterButtons variable
+            filterButtons = document.querySelectorAll('.filter-btn');
+            
+            console.log(`✅ Created ${filterButtons.length} category filter buttons`);
+        }
+
+        // Handle category filter click
+        function handleCategoryFilter(e) {
+            // Remove active class from all buttons
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            // Update current category
+            currentCategory = this.dataset.category;
+            console.log(`🔍 Filtering by category: ${currentCategory}`);
+            
+            // Filter products
+            filterProducts();
+        }
+
+        // Fetch products from API
+        async function loadProducts() {
+            try {
+                console.log('📦 Loading products from:', PRODUCTS_ENDPOINT);
+                const response = await fetch(PRODUCTS_ENDPOINT);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                // Handle different response formats
+                allProducts = data.products || data || [];
+                filteredProducts = [...allProducts];
+                
+                console.log(`✅ Loaded ${allProducts.length} products`);
+                
+                // Hide loading state
+                loadingContainer.style.display = 'none';
+                
+                // Render products
+                renderProducts();
+                
+            } catch (error) {
+                console.error('❌ Error loading products:', error);
+                showError(`Failed to load products: ${error.message}. Please check if backend server is running.`);
+            }
+        }
+
+        // Display error message
+        function showError(message) {
+            loadingContainer.style.display = 'none';
+            productsGrid.innerHTML = `
+                <div class="error-container">
+                    <i class="fas fa-exclamation-triangle error-icon"></i>
+                    <h3>Unable to Load Products</h3>
+                    <p>${message}</p>
+                    <div style="margin-top: 1.5rem;">
+                        <p><strong>Troubleshooting steps:</strong></p>
+                        <ol style="text-align: left; display: inline-block; margin-top: 0.5rem;">
+                            <li>Make sure backend is running: <code>python -m uvicorn main:app --reload</code></li>
+                            <li>Check if <a href="${API_BASE_URL}/api/products" target="_blank">${API_BASE_URL}/api/products</a> works</li>
+                            <li>Refresh this page after backend starts</li>
+                        </ol>
+                    </div>
+                    <button onclick="location.reload()" style="margin-top: 1.5rem; padding: 0.75rem 1.5rem; background: var(--primary); color: white; border: none; border-radius: var(--border-radius); cursor: pointer; font-weight: 600;">
+                        <i class="fas fa-redo"></i> Retry Loading
+                    </button>
+                </div>
+            `;
+        }
+
+        // Render products to the grid
+        function renderProducts() {
+            if (filteredProducts.length === 0) {
+                productsGrid.innerHTML = `
+                    <div class="error-container">
+                        <i class="fas fa-search error-icon"></i>
+                        <h3>No Products Found</h3>
+                        <p>Try adjusting your search or filter criteria</p>
+                        <button onclick="resetFilters()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: var(--primary); color: white; border: none; border-radius: var(--border-radius); cursor: pointer;">
+                            Reset Filters
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+            
+            console.log(`🎨 Rendering ${filteredProducts.length} products`);
+            const productsHTML = filteredProducts.map(product => createProductCard(product)).join('');
+            productsGrid.innerHTML = productsHTML;
+        }
+
+        // Reset all filters
+        function resetFilters() {
+            currentCategory = 'all';
+            searchTerm = '';
+            searchInput.value = '';
+            sortSelect.value = 'featured';
+            
+            // Reset active button
+            filterButtons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.category === 'all') {
+                    btn.classList.add('active');
+                }
+            });
+            
+            filteredProducts = [...allProducts];
+            productCountEl.textContent = allProducts.length;
+            renderProducts();
+        }
+
+        // Create HTML for a single product card
+        function createProductCard(product) {
+            const savings = product.original_price - product.current_price;
+            const discountPercentage = Math.round((savings / product.original_price) * 100);
+            
+            // Format price
+            const formatPrice = (price) => `$${price.toFixed(2)}`;
+            
+            // Generate star rating HTML
+            const starsHTML = generateStarRating(product.rating);
+            
+            // Get trending badge if AI score is high
+            const trendingBadge = product.ai_trending_score >= 80 
+                ? `<span class="trending-badge">🔥 Trending ${product.ai_trending_score}%</span>` 
+                : '';
+            
+            // Check if this is the best deal (33% discount)
+            const isBestDeal = discountPercentage >= 30;
+            const bestDealBadge = isBestDeal ? 
+                `<span style="background: #f59e0b; color: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem; font-weight: 600; margin-left: 0.5rem; display: inline-block;">
+                    <i class="fas fa-crown"></i> Best Deal
+                </span>` : '';
+            
+            return `
+                <div class="product-card" data-category="${product.category}">
+                    <img src="${product.image_url}" alt="${product.title}" class="product-image" 
+                         onerror="this.src='https://via.placeholder.com/300x200?text=Product+Image'">
+                    <div class="product-content">
+                        <span class="product-category">${product.category}</span>
+                        <h3 class="product-title">${product.title}</h3>
+                        
+                        <div class="product-rating">
+                            <div class="stars">${starsHTML}</div>
+                            <span class="rating-value">${product.rating}</span>
+                            <span class="review-count">(${product.review_count?.toLocaleString() || '0'} reviews)</span>
+                        </div>
+                        
+                        <div class="pricing">
+                            <span class="current-price">${formatPrice(product.current_price)}</span>
+                            <span class="original-price">${formatPrice(product.original_price)}</span>
+                            ${discountPercentage > 0 ? 
+                                `<span class="discount-badge">
+                                    <i class="fas fa-tag"></i> Save ${discountPercentage}%
+                                </span>` : ''}
+                            ${trendingBadge}
+                            ${bestDealBadge}
+                        </div>
+                        
+                        <div class="product-features">
+                            <ul class="feature-list">
+                                ${(product.features || []).slice(0, 3).map(feature => 
+                                    `<li>${feature}</li>`
+                                ).join('')}
+                            </ul>
+                        </div>
+                        
+                        <div class="product-footer">
+                            <a href="${product.affiliate_url}" target="_blank" class="affiliate-btn">
+                                <i class="fas fa-shopping-cart"></i>
+                                View Deal on Amazon
+                            </a>
+                            <div class="ai-score">
+                                <i class="fas fa-brain"></i>
+                                AI Score: ${product.ai_trending_score || 'N/A'}%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Generate star rating HTML
+        function generateStarRating(rating) {
+            let starsHTML = '';
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 >= 0.5;
+            
+            for (let i = 0; i < fullStars; i++) {
+                starsHTML += '<i class="fas fa-star"></i>';
+            }
+            
+            if (hasHalfStar) {
+                starsHTML += '<i class="fas fa-star-half-alt"></i>';
+            }
+            
+            const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+            for (let i = 0; i < emptyStars; i++) {
+                starsHTML += '<i class="far fa-star"></i>';
+            }
+            
+            return starsHTML;
+        }
+
+        // Filter products based on category and search term
+        function filterProducts() {
+            filteredProducts = allProducts.filter(product => {
+                // Filter by category
+                if (currentCategory !== 'all' && product.category !== currentCategory) {
+                    return false;
+                }
+                
+                // Filter by search term
+                if (searchTerm && 
+                    !product.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
+                    !product.category.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    return false;
+                }
+                
+                return true;
+            });
+            
+            // Sort products
+            sortProducts();
+            
+            // Update product count in header
+            productCountEl.textContent = filteredProducts.length;
+            
+            // Render filtered products
+            renderProducts();
+        }
+
+        // Sort products based on current sort option
+        function sortProducts() {
+            switch (currentSort) {
+                case 'price-low':
+                    filteredProducts.sort((a, b) => a.current_price - b.current_price);
+                    break;
+                case 'price-high':
+                    filteredProducts.sort((a, b) => b.current_price - a.current_price);
+                    break;
+                case 'rating':
+                    filteredProducts.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+                    break;
+                case 'discount':
+                    filteredProducts.sort((a, b) => {
+                        const discountA = (a.original_price - a.current_price) / a.original_price;
+                        const discountB = (b.original_price - b.current_price) / b.original_price;
+                        return (discountB || 0) - (discountA || 0);
+                    });
+                    break;
+                case 'featured':
+                default:
+                    // Sort by AI trending score (default)
+                    filteredProducts.sort((a, b) => (b.ai_trending_score || 0) - (a.ai_trending_score || 0));
+                    break;
+            }
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Search input
+            searchInput.addEventListener('input', (e) => {
+                searchTerm = e.target.value;
+                filterProducts();
+            });
+
+            // Sort select
+            sortSelect.addEventListener('change', (e) => {
+                currentSort = e.target.value;
+                filterProducts();
+            });
+            
+            // Refresh stats button (optional - you can add a refresh button)
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'r' && e.ctrlKey) {
+                    e.preventDefault();
+                    console.log('🔄 Manual refresh triggered');
+                    loadStats();
+                }
+            });
+        }
+    </script>
+</body>
+</html>
